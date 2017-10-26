@@ -39,7 +39,7 @@ function update() {
 
 const updateCrypto = (coin) => {
   // const url = `https://api.coindesk.com/v1/bpi/currentprice.json`
-  const url = `https://min-api.cryptocompare.com/data/price?fsym=${coin}&tsyms=GBP,USD,EUR,AUD`
+  const url = `https://min-api.cryptocompare.com/data/price?fsym=${coin}&tsyms=GBP,USD,EUR,AUD,BRL`
 
   fetch(url)
   .then(
@@ -69,6 +69,7 @@ const updateCrypto = (coin) => {
 const updateView = (coin, crypto) => {
   document.querySelector('.js-summary').textContent = ''
   if (coin === 'XRP') {
+    document.querySelector(`.${coin}-js-brl`).textContent = `$${crypto.BRL.toFixed(2)}`
     document.querySelector(`.${coin}-js-usd`).textContent = `$${crypto.USD.toFixed(2)}`
     document.querySelector(`.${coin}-js-gbp`).textContent = `£${crypto.GBP.toFixed(2)}`
     document.querySelector(`.${coin}-js-eur`).textContent = `€${crypto.EUR.toFixed(2)}`
@@ -76,6 +77,7 @@ const updateView = (coin, crypto) => {
   }
 
   else {
+    document.querySelector(`.${coin}-js-brl`).textContent = `$${Math.round(crypto.BRL)}`
     document.querySelector(`.${coin}-js-usd`).textContent = `$${Math.round(crypto.USD)}`
     document.querySelector(`.${coin}-js-gbp`).textContent = `£${Math.round(crypto.GBP)}`
     document.querySelector(`.${coin}-js-eur`).textContent = `€${Math.round(crypto.EUR)}`

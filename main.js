@@ -117,6 +117,9 @@ ipcMain.on('crypto-updated', (event, crypto, currency, coin) => {
   // Update icon and title in tray
   if ( coin === 'XRP') {
     switch(currency) {
+      case 'BRL':
+        tray.setTitle(`${coin} $${crypto.BRL.toFixed(2)}`)
+        break;
       case 'USD':
         tray.setTitle(`${coin} $${crypto.USD.toFixed(2)}`)
         break;
@@ -138,6 +141,9 @@ ipcMain.on('crypto-updated', (event, crypto, currency, coin) => {
 
   else {
     switch(currency) {
+      case 'BRL':
+        tray.setTitle(`${coin} $${Math.round(crypto.BRL)}`)
+        break;
       case 'USD':
         tray.setTitle(`${coin} $${Math.round(crypto.USD)}`)
         break;
